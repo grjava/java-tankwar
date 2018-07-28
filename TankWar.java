@@ -3,12 +3,15 @@ import java.awt.event.*;
 
 class TankWar extends Frame {
 
+        public static final int GAME_WIDTH = 400 ;
+        public static final int GAME_HEIGHT = 300 ;
+
         Tank tk = new Tank(50,50);
 
         Image offsetImage = null;
 
         public TankWar(){
-                this.setSize(400,300);
+                this.setSize(GAME_WIDTH,GAME_HEIGHT);
                 this.setVisible(true);
                 this.setBackground(Color.GREEN);
 
@@ -48,13 +51,13 @@ class TankWar extends Frame {
         public void update(Graphics g){
                 //Image offsetImage = this.createImage(400,300);
                 if (offsetImage == null){ 
-                        offsetImage = this.createImage(400,300);
+                        offsetImage = this.createImage(GAME_WIDTH,GAME_HEIGHT);
                 }
                 Graphics offsetImageG = offsetImage.getGraphics();
 
                 Color c = offsetImageG.getColor();
                 offsetImageG.setColor(Color.GREEN);
-                offsetImageG.fillRect(0,0,400,300);
+                offsetImageG.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
                 offsetImageG.setColor(c);
 
                 paint(offsetImageG);
