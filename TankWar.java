@@ -3,7 +3,8 @@ import java.awt.event.*;
 
 class TankWar extends Frame {
 
-        int x=50,y=50;
+        Tank tk = new Tank(50,50);
+
         Image offsetImage = null;
 
         public TankWar(){
@@ -19,22 +20,16 @@ class TankWar extends Frame {
                 this.setResizable(false);
                 this.setTitle("guorui");
 
-                //
-                this.addKeyListener(new KeyAdapter(){
-                        public void keyPressed(KeyEvent e){
-                                int key = e.getKeyCode();
-                                if (key == e.VK_J){ 
-                                        x += 5;
-                                }
-                        }
-                });
+                KeyMonitor km = new KeyMonitor();
+                this.addKeyListener(km);
 
                 new Thread(){
                         public void run(){
                                 while (true){
                                         repaint();
                                         try {
-                                                Thread.sleep(500);
+                                                //must 100,1000 stop
+                                                Thread.sleep(100);
                                         } catch(Exception e) {
                                                 e.printStackTrace();
                                         }
@@ -46,11 +41,8 @@ class TankWar extends Frame {
         }
 
         public void paint(Graphics g){
-                Color c = g.getColor();
-                g.setColor(Color.RED);
-                g.fillOval(x,y,30,30);
-                g.setColor(c);
-
+                super.paint(g);
+                tk.draw(g);
         }
 
         public void update(Graphics g){
@@ -69,13 +61,15 @@ class TankWar extends Frame {
                 g.drawImage(offsetImage,0,0,null);
         }
 
-        public void repaint(){
-                //x += 5;
-                super.repaint();
-        }
 
         public static void main (String [] args) {
                 new TankWar();
+        }
+
+        private class KeyMonitor extends KeyAdapter{
+                public void keyPressed(KeyEvent e){
+                        tk.keyPressed(e);
+                }
         }
 
 }
