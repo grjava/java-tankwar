@@ -4,6 +4,8 @@ import java.awt.event.*;
 class TankWar extends Frame {
 
         int x=50,y=50;
+        Image offsetImage = null;
+
         public TankWar(){
                 this.setSize(400,300);
                 this.setVisible(true);
@@ -39,6 +41,22 @@ class TankWar extends Frame {
                 g.fillOval(x,y,30,30);
                 g.setColor(c);
 
+        }
+
+        public void update(Graphics g){
+                //Image offsetImage = this.createImage(400,300);
+                if (offsetImage == null){ 
+                        offsetImage = this.createImage(400,300);
+                }
+                Graphics offsetImageG = offsetImage.getGraphics();
+
+                Color c = offsetImageG.getColor();
+                offsetImageG.setColor(Color.GREEN);
+                offsetImageG.fillRect(0,0,400,300);
+                offsetImageG.setColor(c);
+
+                paint(offsetImageG);
+                g.drawImage(offsetImage,0,0,null);
         }
 
         public void repaint(){
