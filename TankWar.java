@@ -19,6 +19,16 @@ class TankWar extends Frame {
                 this.setResizable(false);
                 this.setTitle("guorui");
 
+                //
+                this.addKeyListener(new KeyAdapter(){
+                        public void keyPressed(KeyEvent e){
+                                int key = e.getKeyCode();
+                                if (key == e.VK_J){ 
+                                        x += 5;
+                                }
+                        }
+                });
+
                 new Thread(){
                         public void run(){
                                 while (true){
@@ -60,11 +70,12 @@ class TankWar extends Frame {
         }
 
         public void repaint(){
-                x += 5;
+                //x += 5;
                 super.repaint();
         }
 
         public static void main (String [] args) {
                 new TankWar();
         }
+
 }
