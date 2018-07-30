@@ -32,6 +32,7 @@ class TankWar extends Frame {
                                         repaint();
                                         try {
                                                 //must 100,1000 stop
+                                                //处理按键后移动不均匀的问题。
                                                 Thread.sleep(100);
                                         } catch(Exception e) {
                                                 e.printStackTrace();
@@ -46,6 +47,7 @@ class TankWar extends Frame {
         public void paint(Graphics g){
                 super.paint(g);
                 tk.draw(g);
+                tk.move();
         }
 
         public void update(Graphics g){
