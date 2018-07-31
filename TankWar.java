@@ -75,6 +75,10 @@ class TankWar extends Frame {
                 public void keyPressed(KeyEvent e){
                         tk.keyPressed(e);
                 }
+
+                public void keyReleased(KeyEvent e){
+                        tk.keyReleased(e);
+                }
         }
 
 }

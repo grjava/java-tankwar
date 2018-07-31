@@ -44,8 +44,8 @@ class Tank {
                    y -= speed1;
                    break;
                 case LD: 
-                   x += speed1;
-                   y -= speed1;
+                   x -= speed1;
+                   y += speed1;
                    break;
                 case RU: 
                    x += speed1;
@@ -86,6 +86,23 @@ class Tank {
                         break;
                 case KeyEvent.VK_RIGHT:
                         bR=true;
+                        break;
+            }
+    }
+    public void keyReleased(KeyEvent e){
+            int key = e.getKeyCode();
+            switch (key) {
+                case KeyEvent.VK_UP:
+                        bU=false;
+                        break;
+                case KeyEvent.VK_DOWN:
+                        bD=false;
+                        break;
+                case KeyEvent.VK_LEFT:
+                        bL=false;
+                        break;
+                case KeyEvent.VK_RIGHT:
+                        bR=false;
                         break;
             }
     }
