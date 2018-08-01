@@ -8,11 +8,19 @@ class Tank {
     private int speed = 3 ;
     private boolean bU=false,bD=false,bL=false,bR=false;
     private Direction dir = Direction.STOP;
+    private Missile m;
+
+    //TankWar tw = null;
 
     public Tank(int x,int y){
             this.x = x;
             this.y = y;
     }
+    //public Tank(int x,int y,TankWar tw){
+    //        this(x,y);
+    //        this.tw = tw;
+    //}
+
 
     public void draw(Graphics g){
             Color c = g.getColor();
@@ -25,7 +33,6 @@ class Tank {
     //使用locateDirection方法来确认坦克的方向。
     public void move(){
             int speed1 = (int)(0.707f*speed);
-            System.out.println(speed1);
             switch (dir) {
                 case U: 
                    y -= speed;
@@ -72,9 +79,16 @@ class Tank {
             else if(!bU && bD && !bL && bR){ dir = Direction.RD;}
     }
 
+    public Missile fire(){
+            return new Missile(x,y,dir);
+    }
+
     public void keyPressed(KeyEvent e){
             int key = e.getKeyCode();
             switch (key) {
+                case KeyEvent.VK_CONTROL:
+                        m = fire();
+                        break;
                 case KeyEvent.VK_UP:
                         bU=true;
                         break;
@@ -105,5 +119,8 @@ class Tank {
                         bR=false;
                         break;
             }
+    }
+    public Missile getMissile(){
+            return m;
     }
 }

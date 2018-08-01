@@ -48,6 +48,12 @@ class TankWar extends Frame {
                 super.paint(g);
                 tk.draw(g);
                 tk.move();
+
+                Missile m = tk.getMissile();
+                if(m!=null){
+                        m.draw(g);
+                        m.move();
+                }
         }
 
         public void update(Graphics g){
