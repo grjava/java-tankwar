@@ -2,6 +2,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 class Missile {
+
+        public static final int WIDTH = 8 ;
+        public static final int HEIGHT = 8 ;
+
+
         private int x=0,y=0;
         private Direction dir; 
         private int speed = 10 ;
@@ -13,7 +18,7 @@ class Missile {
         }
 
         public void draw(Graphics g){
-                g.fillOval(x,y,8,8);
+                g.fillOval(x,y,Missile.WIDTH,Missile.HEIGHT);
         }
         public void move(){
             int speed1 = (int)(0.707f*speed);

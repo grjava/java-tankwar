@@ -4,10 +4,15 @@ import java.awt.event.*;
 enum Direction {U,D,L,R,LU,RU,LD,RD,STOP}
 
 class Tank {
+    
+    public static final int WIDTH = 30 ;
+    public static final int HEIGHT = 30 ;
+
     private int x,y;
     private int speed = 3 ;
     private boolean bU=false,bD=false,bL=false,bR=false;
     private Direction dir = Direction.STOP;
+    private Direction barrelDir = Direction.D;
     private Missile m;
 
     //TankWar tw = null;
@@ -23,9 +28,55 @@ class Tank {
 
 
     public void draw(Graphics g){
+            int x,y;
             Color c = g.getColor();
             g.setColor(Color.RED);
-            g.fillOval(x,y,30,30);
+            g.fillOval(this.x,this.y,Tank.WIDTH,Tank.HEIGHT);
+
+            g.setColor(Color.BLACK);
+            switch (barrelDir) {
+                case U: 
+                   x = this.x+Tank.WIDTH/2;
+                   y = this.y+Tank.HEIGHT/2;
+                   g.drawLine(x,y,x,y-Tank.HEIGHT/2);
+                   break;
+                case D: 
+                   x = this.x+Tank.WIDTH/2;
+                   y = this.y+Tank.HEIGHT/2;
+                   g.drawLine(x,y,x,y+Tank.HEIGHT/2);
+                   break;
+                case L: 
+                   x = this.x+Tank.WIDTH/2;
+                   y = this.y+Tank.HEIGHT/2;
+                   g.drawLine(x,y,x-Tank.WIDTH/2,y);
+                   break;
+                case R: 
+                   x = this.x+Tank.WIDTH/2;
+                   y = this.y+Tank.HEIGHT/2;
+                   g.drawLine(x,y,x+Tank.WIDTH/2,y);
+                   break;
+                case LU: 
+                   x = this.x+Tank.WIDTH/2;
+                   y = this.y+Tank.HEIGHT/2;
+                   g.drawLine(x,y,x-(int)(Tank.WIDTH/2*0.707),y-(int)(Tank.HEIGHT/2*0.707));
+                   break;
+                case LD: 
+                   x = this.x+Tank.WIDTH/2;
+                   y = this.y+Tank.HEIGHT/2;
+                   g.drawLine(x,y,x-(int)(Tank.WIDTH/2*0.707),y+(int)(Tank.HEIGHT/2*0.707));;
+                   break;
+                case RU: 
+                   x = this.x+Tank.WIDTH/2;
+                   y = this.y+Tank.HEIGHT/2;
+                   g.drawLine(x,y,x+(int)(Tank.WIDTH/2*0.707),y-(int)(Tank.HEIGHT/2*0.707));;
+                   break;
+                case RD: 
+                   x = this.x+Tank.WIDTH/2;
+                   y = this.y+Tank.HEIGHT/2;
+                   g.drawLine(x,y,x+(int)(Tank.WIDTH/2*0.707),y+(int)(Tank.HEIGHT/2*0.707));;
+                   break;
+            }
+
             g.setColor(c);
     }
 
@@ -66,6 +117,7 @@ class Tank {
                    break;
             }
             locateDirection();
+            if(this.dir != Direction.STOP){ this.barrelDir = this.dir;}
     }
     public void locateDirection(){
             if(!bU && !bD && !bL && !bR){ dir = Direction.STOP;}
@@ -80,7 +132,9 @@ class Tank {
     }
 
     public Missile fire(){
-            return new Missile(x,y,dir);
+            int x = this.x+Tank.WIDTH/2-Missile.WIDTH/2;
+            int y = this.y+Tank.HEIGHT/2-Missile.HEIGHT/2;
+            return new Missile(x,y,barrelDir);
     }
 
     public void keyPressed(KeyEvent e){
