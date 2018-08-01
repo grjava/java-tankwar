@@ -116,7 +116,6 @@ class Tank {
                 case STOP:
                    break;
             }
-            locateDirection();
             if(this.dir != Direction.STOP){ this.barrelDir = this.dir;}
     }
     public void locateDirection(){
@@ -156,6 +155,7 @@ class Tank {
                         bR=true;
                         break;
             }
+            locateDirection();
     }
     public void keyReleased(KeyEvent e){
             int key = e.getKeyCode();
@@ -173,6 +173,7 @@ class Tank {
                         bR=false;
                         break;
             }
+            locateDirection();
     }
     public Missile getMissile(){
             return m;
