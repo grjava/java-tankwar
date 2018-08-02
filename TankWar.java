@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
+import java.util.ArrayList;
+
 
 class TankWar extends Frame {
 
@@ -46,13 +49,23 @@ class TankWar extends Frame {
 
         public void paint(Graphics g){
                 super.paint(g);
+
                 tk.draw(g);
                 tk.move();
 
-                Missile m = tk.getMissile();
-                if(m!=null){
-                        m.draw(g);
-                        m.move();
+                //Missile m = tk.getMissile();
+                //if(m!=null){
+                //        m.draw(g);
+                //        m.move();
+                //}
+                List<Missile> ms = tk.getMissiles();
+                g.drawString("Missile count:"+ms.size(),10,50);
+                for (int i=0;i<ms.size();i++ ) {
+                        Missile m = ms.get(i);
+                        if(m!=null){
+                                m.draw(g);
+                                m.move();
+                        }
                 }
         }
 
