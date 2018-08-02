@@ -62,6 +62,9 @@ class TankWar extends Frame {
                 g.drawString("Missile count:"+ms.size(),10,50);
                 for (int i=0;i<ms.size();i++ ) {
                         Missile m = ms.get(i);
+                        if(!m.isLive()){
+                                ms.remove(m);
+                        }
                         if(m!=null){
                                 m.draw(g);
                                 m.move();

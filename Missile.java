@@ -10,6 +10,7 @@ class Missile {
         private int x=0,y=0;
         private Direction dir; 
         private int speed = 10 ;
+        private boolean live = true;
 
         public Missile(int x,int y,Direction dir){
                 this.x = x;
@@ -18,7 +19,9 @@ class Missile {
         }
 
         public void draw(Graphics g){
-                g.fillOval(x,y,Missile.WIDTH,Missile.HEIGHT);
+                if (this.live){ 
+                        g.fillOval(x,y,Missile.WIDTH,Missile.HEIGHT);
+                }
         }
         public void move(){
             int speed1 = (int)(0.707f*speed);
@@ -52,5 +55,10 @@ class Missile {
                    y += speed1;
                    break;
             }
+
+            if (this.x<0 || this.y<0 || this.x>TankWar.GAME_WIDTH || this.y>TankWar.GAME_HEIGHT){ 
+                    this.live = false;
+            }
         }
+        public boolean isLive(){ return live;}
 }
