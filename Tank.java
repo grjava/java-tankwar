@@ -9,6 +9,7 @@ class Tank {
     
     public static final int WIDTH = 30 ;
     public static final int HEIGHT = 30 ;
+    public static final List<Missile> MS = new ArrayList<Missile>();
 
     private int x,y;
     private int speed = 3 ;
@@ -16,7 +17,8 @@ class Tank {
     private Direction dir = Direction.STOP;
     private Direction barrelDir = Direction.D;
     private Missile m;
-    private List<Missile> ms = new ArrayList<Missile>();
+
+    private boolean good;
 
     //TankWar tw = null;
 
@@ -29,11 +31,20 @@ class Tank {
     //        this.tw = tw;
     //}
 
+    public Tank(int x,int y,boolean good){
+            this(x,y);
+            this.good = good;
+    }
+
 
     public void draw(Graphics g){
             int x,y;
             Color c = g.getColor();
-            g.setColor(Color.RED);
+            if (good) {
+                  g.setColor(Color.RED);
+            }else {
+                  g.setColor(Color.BLUE);
+            }
             g.fillOval(this.x,this.y,Tank.WIDTH,Tank.HEIGHT);
 
             g.setColor(Color.BLACK);
@@ -144,7 +155,7 @@ class Tank {
             switch (key) {
                 case KeyEvent.VK_CONTROL:
                         //m = fire();
-                        ms.add(fire());
+                        MS.add(fire());
                         break;
                 case KeyEvent.VK_UP:
                         bU=true;
@@ -182,7 +193,7 @@ class Tank {
     public Missile getMissile(){
             return m;
     }
-    public List<Missile> getMissiles(){
-            return ms;
-    }
+    //public List<Missile> getMissiles(){
+    //        return ms;
+    //}
 }

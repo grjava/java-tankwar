@@ -9,7 +9,9 @@ class TankWar extends Frame {
         public static final int GAME_WIDTH = 400 ;
         public static final int GAME_HEIGHT = 300 ;
 
-        Tank tk = new Tank(50,50);
+        Tank tk = new Tank(50,50,true);
+
+        Tank enemyTank = new Tank(100,100,false);
 
         Image offsetImage = null;
 
@@ -53,15 +55,22 @@ class TankWar extends Frame {
                 tk.draw(g);
                 tk.move();
 
+                enemyTank.draw(g);
+                enemyTank.move();
+
                 //Missile m = tk.getMissile();
                 //if(m!=null){
                 //        m.draw(g);
                 //        m.move();
                 //}
-                List<Missile> ms = tk.getMissiles();
+                //List<Missile> ms = tk.getMissiles();
+
+                //修改Missile为静态类属性。
+                List<Missile> ms = Tank.MS; 
                 g.drawString("Missile count:"+ms.size(),10,50);
                 for (int i=0;i<ms.size();i++ ) {
                         Missile m = ms.get(i);
+                        //可以专门起一个线程处理炮弹
                         if(!m.isLive()){
                                 ms.remove(m);
                         }
