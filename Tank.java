@@ -19,6 +19,8 @@ class Tank {
     private Missile m;
 
     private boolean good;
+                        
+    private boolean live=true;
 
     //TankWar tw = null;
 
@@ -38,6 +40,8 @@ class Tank {
 
 
     public void draw(Graphics g){
+            if(!live) return;
+
             int x,y;
             Color c = g.getColor();
             if (good) {
@@ -196,4 +200,10 @@ class Tank {
     //public List<Missile> getMissiles(){
     //        return ms;
     //}
+
+    public Rectangle getRect(){
+            return new Rectangle(x,y,WIDTH,HEIGHT);
+    }
+    public void setLive(boolean live){ this.live = live;}
+    public boolean isLive(){return live;}
 }

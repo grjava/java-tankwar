@@ -71,6 +71,13 @@ class TankWar extends Frame {
                 for (int i=0;i<ms.size();i++ ) {
                         Missile m = ms.get(i);
                         //可以专门起一个线程处理炮弹
+
+                        //用炮弹打坦克
+                        //m.hit(enemyTank);
+                        //打中坦克炮弹消失
+                        if (m.hit(enemyTank)){ 
+                                m.setLive(false);
+                        }
                         if(!m.isLive()){
                                 ms.remove(m);
                         }

@@ -19,9 +19,8 @@ class Missile {
         }
 
         public void draw(Graphics g){
-                if (this.live){ 
-                        g.fillOval(x,y,Missile.WIDTH,Missile.HEIGHT);
-                }
+                if (!live) return ;
+                g.fillOval(x,y,Missile.WIDTH,Missile.HEIGHT);
         }
         public void move(){
             int speed1 = (int)(0.707f*speed);
@@ -60,5 +59,21 @@ class Missile {
                     this.live = false;
             }
         }
+        public void setLive(boolean live){this.live = live;}
         public boolean isLive(){ return live;}
+
+        public Rectangle getRect(){
+                return new Rectangle(x,y,WIDTH,HEIGHT);
+        }
+
+        public boolean hit(Tank t){
+                if (this.getRect().intersects(t.getRect())){ 
+                        t.setLive(false);
+                        return true;
+                }
+                return false;
+        }
 }
+
+
+
