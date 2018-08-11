@@ -13,7 +13,7 @@ class TankWar extends Frame {
 
         Tank enemyTank = new Tank(100,100,false);
 
-        Explode e = new Explode(50,50);
+        //Explode e = new Explode(50,50);
 
         Image offsetImage = null;
 
@@ -68,8 +68,9 @@ class TankWar extends Frame {
                 //List<Missile> ms = tk.getMissiles();
 
                 //修改Missile为静态类属性。
-                List<Missile> ms = Tank.MS; 
+                List<Missile> ms = Missile.MS; 
                 g.drawString("Missile count:"+ms.size(),10,50);
+                g.drawString("Explode count:"+Explode.es.size(),10,60);
                 for (int i=0;i<ms.size();i++ ) {
                         Missile m = ms.get(i);
                         //可以专门起一个线程处理炮弹
@@ -88,7 +89,12 @@ class TankWar extends Frame {
                                 m.move();
                         }
                 }
-                e.draw(g);
+                //e.draw(g);
+                for (int i=0;i<Explode.es.size() ;i++ ) {
+                       Explode e = Explode.es.get(i);
+                       e.draw(g);
+                       //Explode.es.remove(i);
+                }
         }
 
         public void update(Graphics g){

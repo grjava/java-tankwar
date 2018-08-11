@@ -1,7 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
+import java.util.ArrayList;
 
 class Explode {
+
+        public static final List<Explode> es = new ArrayList<Explode>();
 
         int x,y;
         int[] diameter = {4,6,10,15,20,30,35,20,14,5};
@@ -14,7 +18,10 @@ class Explode {
         }
 
         public void draw(Graphics g){
-                if (!live){ return;}
+                if (!live){
+                        es.remove(this);
+                        return;
+                }
                 if(step >= diameter.length){
                         live = false;
                         step = 0 ;

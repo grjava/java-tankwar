@@ -1,7 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.util.List;
-import java.util.ArrayList;
 
 enum Direction {U,D,L,R,LU,RU,LD,RD,STOP}
 
@@ -9,7 +7,7 @@ class Tank {
     
     public static final int WIDTH = 30 ;
     public static final int HEIGHT = 30 ;
-    public static final List<Missile> MS = new ArrayList<Missile>();
+    //public static final List<Missile> MS = new ArrayList<Missile>();
 
     private int x,y;
     private int speed = 3 ;
@@ -159,7 +157,7 @@ class Tank {
             switch (key) {
                 case KeyEvent.VK_CONTROL:
                         //m = fire();
-                        MS.add(fire());
+                        Missile.MS.add(fire());
                         break;
                 case KeyEvent.VK_UP:
                         bU=true;

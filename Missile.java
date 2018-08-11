@@ -1,10 +1,14 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
+import java.util.ArrayList;
 
 class Missile {
 
         public static final int WIDTH = 8 ;
         public static final int HEIGHT = 8 ;
+
+        public static final List<Missile> MS = new ArrayList<Missile>();
 
 
         private int x=0,y=0;
@@ -69,6 +73,8 @@ class Missile {
         public boolean hit(Tank t){
                 if (this.getRect().intersects(t.getRect()) && t.isLive()){ 
                         t.setLive(false);
+                        Explode e = new Explode(x,y);
+                        Explode.es.add(e);
                         return true;
                 }
                 return false;
