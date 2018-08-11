@@ -13,6 +13,8 @@ class TankWar extends Frame {
 
         Tank enemyTank = new Tank(100,100,false);
 
+        Explode e = new Explode(50,50);
+
         Image offsetImage = null;
 
         public TankWar(){
@@ -86,6 +88,7 @@ class TankWar extends Frame {
                                 m.move();
                         }
                 }
+                e.draw(g);
         }
 
         public void update(Graphics g){
