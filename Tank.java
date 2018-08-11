@@ -41,7 +41,12 @@ class Tank {
 
 
     public void draw(Graphics g){
-            if(!live) return;
+            if(!live){
+                if (!good){ 
+                   TS.remove(this);
+                }
+                return;
+            } 
 
             int x,y;
             Color c = g.getColor();

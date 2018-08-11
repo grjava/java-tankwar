@@ -82,8 +82,9 @@ class TankWar extends Frame {
 
                 //修改Missile为静态类属性。
                 List<Missile> ms = Missile.MS; 
-                g.drawString("Missile count:"+ms.size(),10,50);
-                g.drawString("Explode count:"+Explode.es.size(),10,60);
+                g.drawString("Missile count:"+ms.size(),10,35);
+                g.drawString("Explode count:"+Explode.es.size(),10,50);
+                g.drawString("Tank count:"+Tank.TS.size(),10,65);
                 for (int i=0;i<ms.size();i++ ) {
                         Missile m = ms.get(i);
                         //可以专门起一个线程处理炮弹
