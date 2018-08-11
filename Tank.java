@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
+import java.util.ArrayList;
 
 enum Direction {U,D,L,R,LU,RU,LD,RD,STOP}
 
@@ -7,6 +9,7 @@ class Tank {
     
     public static final int WIDTH = 30 ;
     public static final int HEIGHT = 30 ;
+    public static final List<Tank> TS = new ArrayList<Tank>();
     //public static final List<Missile> MS = new ArrayList<Missile>();
 
     private int x,y;

@@ -11,13 +11,20 @@ class TankWar extends Frame {
 
         Tank tk = new Tank(50,50,true);
 
-        Tank enemyTank = new Tank(100,100,false);
+        //Tank enemyTank = new Tank(100,100,false);
+        Tank enemyTank = null;
 
         //Explode e = new Explode(50,50);
 
         Image offsetImage = null;
 
         public TankWar(){
+
+                for (int i=0;i<10 ;i++ ){
+                        enemyTank = new Tank(100*(i+1)/3,100,false);
+                        Tank.TS.add(enemyTank);
+                } 
+
                 this.setSize(GAME_WIDTH,GAME_HEIGHT);
                 this.setVisible(true);
                 this.setBackground(Color.GREEN);
@@ -57,8 +64,14 @@ class TankWar extends Frame {
                 tk.draw(g);
                 tk.move();
 
-                enemyTank.draw(g);
-                enemyTank.move();
+                //enemyTank.draw(g);
+                //enemyTank.move();
+                Tank enemyTank = null;
+                for (int i=0;i<Tank.TS.size() ; i++) {
+                        enemyTank = Tank.TS.get(i);
+                        enemyTank.draw(g);
+                        enemyTank.move();
+                }
 
                 //Missile m = tk.getMissile();
                 //if(m!=null){
@@ -78,8 +91,14 @@ class TankWar extends Frame {
                         //用炮弹打坦克
                         //m.hit(enemyTank);
                         //打中坦克炮弹消失
-                        if (m.hit(enemyTank)){ 
-                                m.setLive(false);
+                        //if (m.hit(enemyTank)){ 
+                        //        m.setLive(false);
+                        //}
+                        for (int j=0;j<Tank.TS.size() ; j++) {
+                                enemyTank = Tank.TS.get(j);
+                                if (m.hit(enemyTank)){ 
+                                        m.setLive(false);
+                                }
                         }
                         if(!m.isLive()){
                                 ms.remove(m);
