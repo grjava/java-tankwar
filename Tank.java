@@ -25,6 +25,8 @@ class Tank {
     private boolean live=true;
 
     private Random r = new Random();
+    //private int step = 6;
+    private int step = r.nextInt(8)+6;
 
     //TankWar tw = null;
 
@@ -143,13 +145,26 @@ class Tank {
                 case STOP:
                    break;
             }
+
+            if(x<=0) x =0 ;
+            if(y<=0) y =0 ;
+            if(x>=TankWar.GAME_WIDTH) x =TankWar.GAME_WIDTH ;
+            if(y>=TankWar.GAME_HEIGHT) y =TankWar.GAME_HEIGHT;
+
+
             if(this.dir != Direction.STOP){ this.barrelDir = this.dir;}
 
             if (!good){ 
-                    Direction[] dirs = Direction.values();
-                    int i = r.nextInt(dirs.length);
-                   //this.dir = Direction.D; 
-                   this.dir = dirs[i]; 
+                   if (step==0){ 
+                           //step = 6;
+                           step = r.nextInt(8)+6;
+                           Direction[] dirs = Direction.values();
+                           int i = r.nextInt(dirs.length);
+                           //this.dir = Direction.D; 
+                           this.dir = dirs[i]; 
+                   }
+
+                   step--;
             }
     }
     public void locateDirection(){
