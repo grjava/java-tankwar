@@ -101,6 +101,9 @@ class TankWar extends Frame {
                                 if (m.hit(enemyTank)){ 
                                         m.setLive(false);
                                 }
+                                if (m.hit(tk)){ 
+                                        m.setLive(false);
+                                }
                         }
                         if(!m.isLive()){
                                 ms.remove(m);
