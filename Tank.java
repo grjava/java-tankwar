@@ -166,7 +166,9 @@ class Tank {
 
                    step--;
 
-                   this.fire();
+                   //this.fire();
+                   if(r.nextInt(40)>38) this.fire();
+                   
             }
     }
     public void locateDirection(){
