@@ -15,11 +15,16 @@ class Missile {
         private Direction dir; 
         private int speed = 10 ;
         private boolean live = true;
+        private boolean good;
 
         public Missile(int x,int y,Direction dir){
                 this.x = x;
                 this.y = y;
                 this.dir = dir;
+        }
+        public Missile(int x,int y,boolean good,Direction dir){
+                this(x,y,dir);
+                this.good = good;
         }
 
         public void draw(Graphics g){
@@ -71,7 +76,7 @@ class Missile {
         }
 
         public boolean hit(Tank t){
-                if (this.getRect().intersects(t.getRect()) && t.isLive()){ 
+                if (this.getRect().intersects(t.getRect()) && t.isLive() && good!=t.isGood()){ 
                         t.setLive(false);
                         Explode e = new Explode(x,y);
                         Explode.es.add(e);

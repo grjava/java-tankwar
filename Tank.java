@@ -185,7 +185,8 @@ class Tank {
             Missile m = null;
             int x = this.x+Tank.WIDTH/2-Missile.WIDTH/2;
             int y = this.y+Tank.HEIGHT/2-Missile.HEIGHT/2;
-            m = new Missile(x,y,barrelDir);
+            //m = new Missile(x,y,barrelDir);
+            m = new Missile(x,y,good,barrelDir);
             Missile.MS.add(m);
             return m;
     }
@@ -243,6 +244,7 @@ class Tank {
     }
     public void setLive(boolean live){ this.live = live;}
     public boolean isLive(){return live;}
+    public boolean isGood(){return good;}
 
     //public void setDir(Direction dir){ this.dir = dir ;}
 }
