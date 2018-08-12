@@ -22,6 +22,7 @@ class TankWar extends Frame {
 
                 for (int i=0;i<10 ;i++ ){
                         enemyTank = new Tank(100*(i+1)/3,100,false);
+                        enemyTank.setDir(Direction.D);
                         Tank.TS.add(enemyTank);
                 } 
 

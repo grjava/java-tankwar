@@ -212,4 +212,6 @@ class Tank {
     }
     public void setLive(boolean live){ this.live = live;}
     public boolean isLive(){return live;}
+
+    public void setDir(Direction dir){ this.dir = dir ;}
 }
