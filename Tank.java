@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.*;
 
 enum Direction {U,D,L,R,LU,RU,LD,RD,STOP}
 
@@ -22,6 +23,8 @@ class Tank {
     private boolean good;
                         
     private boolean live=true;
+
+    private Random r = new Random();
 
     //TankWar tw = null;
 
@@ -141,6 +144,13 @@ class Tank {
                    break;
             }
             if(this.dir != Direction.STOP){ this.barrelDir = this.dir;}
+
+            if (!good){ 
+                    Direction[] dirs = Direction.values();
+                    int i = r.nextInt(dirs.length);
+                   //this.dir = Direction.D; 
+                   this.dir = dirs[i]; 
+            }
     }
     public void locateDirection(){
             if(!bU && !bD && !bL && !bR){ dir = Direction.STOP;}
@@ -213,5 +223,5 @@ class Tank {
     public void setLive(boolean live){ this.live = live;}
     public boolean isLive(){return live;}
 
-    public void setDir(Direction dir){ this.dir = dir ;}
+    //public void setDir(Direction dir){ this.dir = dir ;}
 }
