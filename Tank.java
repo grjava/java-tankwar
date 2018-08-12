@@ -165,6 +165,8 @@ class Tank {
                    }
 
                    step--;
+
+                   this.fire();
             }
     }
     public void locateDirection(){
@@ -180,9 +182,12 @@ class Tank {
     }
 
     public Missile fire(){
+            Missile m = null;
             int x = this.x+Tank.WIDTH/2-Missile.WIDTH/2;
             int y = this.y+Tank.HEIGHT/2-Missile.HEIGHT/2;
-            return new Missile(x,y,barrelDir);
+            m = new Missile(x,y,barrelDir);
+            Missile.MS.add(m);
+            return m;
     }
 
     public void keyPressed(KeyEvent e){
@@ -190,7 +195,8 @@ class Tank {
             switch (key) {
                 case KeyEvent.VK_CONTROL:
                         //m = fire();
-                        Missile.MS.add(fire());
+                        //Missile.MS.add(fire());
+                        fire();
                         break;
                 case KeyEvent.VK_UP:
                         bU=true;
