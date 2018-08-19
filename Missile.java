@@ -75,6 +75,7 @@ class Missile {
                 return new Rectangle(x,y,WIDTH,HEIGHT);
         }
 
+        //hit(Tank)和hit(Wall)共用了getRect()方法，可以使用接口的方式合并这两个方法。
         public boolean hit(Tank t){
                 if (this.getRect().intersects(t.getRect()) && t.isLive() && good!=t.isGood()){ 
                         t.setLive(false);
@@ -84,6 +85,13 @@ class Missile {
                 }
                 return false;
         }
+        public boolean hit(Wall w){
+                if(this.getRect().intersects(w.getRect())){
+                        return true;
+                }
+                return false;
+        }
+
 }
 
 

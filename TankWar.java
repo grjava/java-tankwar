@@ -9,7 +9,7 @@ class TankWar extends Frame {
         public static final int GAME_WIDTH = 400 ;
         public static final int GAME_HEIGHT = 300 ;
 
-        Tank tk = new Tank(50,50,true);
+        Tank tk = new Tank(20,50,true);
 
         //Tank enemyTank = new Tank(100,100,false);
         Tank enemyTank = null;
@@ -17,11 +17,13 @@ class TankWar extends Frame {
         //Explode e = new Explode(50,50);
 
         Image offsetImage = null;
+        Wall w1 = new Wall(250,50,100,20);
+        Wall w2 = new Wall(60,80,20,200);
 
         public TankWar(){
 
-                for (int i=0;i<10 ;i++ ){
-                        enemyTank = new Tank(100*(i+1)/3,100,false);
+                for (int i=0;i<7;i++ ){
+                        enemyTank = new Tank(100*(i+3)/3,100,false);
                         //enemyTank.setDir(Direction.D);
                         Tank.TS.add(enemyTank);
                 } 
@@ -65,6 +67,9 @@ class TankWar extends Frame {
                 tk.draw(g);
                 tk.move();
 
+                w1.draw(g);
+                w2.draw(g);
+
                 //enemyTank.draw(g);
                 //enemyTank.move();
                 Tank enemyTank = null;
@@ -72,7 +77,11 @@ class TankWar extends Frame {
                         enemyTank = Tank.TS.get(i);
                         enemyTank.draw(g);
                         enemyTank.move();
+
+                        enemyTank.collidesWith(w1);
+                        enemyTank.collidesWith(w2);
                 }
+
 
                 //Missile m = tk.getMissile();
                 //if(m!=null){
@@ -83,9 +92,6 @@ class TankWar extends Frame {
 
                 //修改Missile为静态类属性。
                 List<Missile> ms = Missile.MS; 
-                g.drawString("Missile count:"+ms.size(),10,35);
-                g.drawString("Explode count:"+Explode.es.size(),10,50);
-                g.drawString("Tank count:"+Tank.TS.size(),10,65);
                 for (int i=0;i<ms.size();i++ ) {
                         Missile m = ms.get(i);
                         //可以专门起一个线程处理炮弹
@@ -105,6 +111,10 @@ class TankWar extends Frame {
                                         m.setLive(false);
                                 }
                         }
+                        if(m.hit(w1) || m.hit(w2)){
+                                m.setLive(false);
+                        }
+
                         if(!m.isLive()){
                                 ms.remove(m);
                         }
@@ -119,6 +129,10 @@ class TankWar extends Frame {
                        e.draw(g);
                        //Explode.es.remove(i);
                 }
+
+                g.drawString("Missile count:"+ms.size(),10,35);
+                g.drawString("Explode count:"+Explode.es.size(),10,50);
+                g.drawString("Tank count:"+Tank.TS.size(),10,65);
         }
 
         public void update(Graphics g){

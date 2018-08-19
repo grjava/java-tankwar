@@ -14,6 +14,8 @@ class Tank {
     //public static final List<Missile> MS = new ArrayList<Missile>();
 
     private int x,y;
+    private int oldX,oldY;
+
     private int speed = 3 ;
     private boolean bU=false,bD=false,bL=false,bR=false;
     private Direction dir = Direction.STOP;
@@ -33,6 +35,8 @@ class Tank {
     public Tank(int x,int y){
             this.x = x;
             this.y = y;
+            this.oldX = x;
+            this.oldY = y;
     }
     //public Tank(int x,int y,TankWar tw){
     //        this(x,y);
@@ -112,6 +116,9 @@ class Tank {
     //使用move方法解决，坦克可以朝八个方向走。同时解决按键移动不均匀的问题,speed由重绘的线程决定。
     //使用locateDirection方法来确认坦克的方向。
     public void move(){
+            oldX = x;
+            oldY = y;
+
             int speed1 = (int)(0.707f*speed);
             switch (dir) {
                 case U: 
@@ -251,4 +258,23 @@ class Tank {
     public boolean isGood(){return good;}
 
     //public void setDir(Direction dir){ this.dir = dir ;}
+    //
+
+    public boolean collidesWith(Wall w){
+            if (this.live && this.getRect().intersects(w.getRect())){ 
+                    //this.dir = Direction.STOP;
+                    //x = oldX;
+                    //y = oldY;
+                    this.stay();
+
+                    return true;
+            }
+            return false;
+    }
+    private void stay(){
+            x = oldX;
+            y = oldY;
+    }
 }
+
+
