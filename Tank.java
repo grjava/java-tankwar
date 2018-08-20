@@ -271,6 +271,19 @@ class Tank {
             }
             return false;
     }
+    public boolean collidesWith(Tank t){
+            if (this != t && this.getRect().intersects(t.getRect())){ 
+                    this.stay();
+                    return true;
+            }
+            return false;
+    }
+    public void collidesWithTank(){
+            for (int i=0;i<TS.size() ;i++ ){
+                    Tank t = TS.get(i);
+                    this.collidesWith(t);
+            } 
+    }
     private void stay(){
             x = oldX;
             y = oldY;

@@ -80,6 +80,8 @@ class TankWar extends Frame {
 
                         enemyTank.collidesWith(w1);
                         enemyTank.collidesWith(w2);
+
+                        enemyTank.collidesWithTank();
                 }
 
 
